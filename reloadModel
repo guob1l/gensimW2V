@@ -1,0 +1,10 @@
+#coding=utf-8
+'''
+Created on 2017��3��23��
+
+@author: gb
+'''
+import gensim
+new_model = gensim.models.Word2Vec.load('newmodels.model')
+print(new_model['姚明'])
+print(new_model.similarity('蔡依林', '周杰伦'))
