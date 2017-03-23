@@ -1,0 +1,32 @@
+#coding=utf-8
+'''
+Created on 2017��3��23��
+
+@author: gb
+'''
+#successed model    
+import os
+import gensim, logging
+logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
+   
+class MySentences(object):
+    def __init__(self, dirname):
+        self.dirname = dirname
+
+    def __iter__(self):
+        
+        catelist=os.listdir(self.dirname)
+        for mydir in catelist:
+            seg_dir=self.dirname+mydir+'/'
+            filelist=os.listdir(seg_dir)
+            for filepath in filelist:
+                fullname=seg_dir+filepath
+                
+            for line in open(fullname):
+                print(line.split())
+                yield line.split()
+
+sentences = MySentences('train_corpus_seg/') 
+# print(sentences)
+model = gensim.models.Word2Vec(sentences,min_count=1)
+print(model['我'])
